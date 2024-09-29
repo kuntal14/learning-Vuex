@@ -9,7 +9,7 @@ const app = createApp(App)
 const store = createStore({
     state(){
         return{
-            count : 0,
+            count : 3,
             todos: [
                 { id: 1, text: '...', done: true },
                 { id: 2, text: '...', done: true }
@@ -17,8 +17,9 @@ const store = createStore({
         }
     },
     mutations: {
-        increment (state){
-            state.count++;
+        increment (state, n=2){
+            state.count+=n;
+            console.log(n)
         }
     },
     getters: {
