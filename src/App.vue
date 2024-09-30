@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Count : {{ count }}  </h1>
+    <h1> Count : {{ count }} Done-Todo {{ DoneTodo }} </h1>
     <button @click.prevent="increment"> Increment </button>
   </div>
 </template>
@@ -19,7 +19,11 @@ const count = computed(() => store.state.count)
 //   amount: 10
 // })
 
-const increment = () => store.commit('increment', 10)
+const id = 1;
+
+var DoneTodo = computed(() => store.getters.getTodoById(id))
+
+const increment = () => store.dispatch('incrementAsync', 10)
 
 </script>
 

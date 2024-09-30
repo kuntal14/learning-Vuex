@@ -19,17 +19,27 @@ const store = createStore({
     mutations: {
         increment (state, n=2){
             state.count+=n;
-            console.log(n)
         }
     },
     getters: {
         doneTodos(state){
             return state.todos.filter(todo => todo.done)
         },
-        getTodoById: (state) => (id) => {
-            return state.todos.find(todo => todo.id === id)
-          }
-
+        getTodoById : (state) => id => {
+            return state.todos.find((todo) => todo.id === id)
+        },
+    },
+    actions: {
+        async incrementAsync({commit}, amount){
+            await this.dispatch('secTimeout');
+            commit('increment', amount)
+        },
+        secTimeout({commit}){
+            setTimeout(() => {
+                console.log('starting timer')
+                commit('increment')
+            }, 1000)
+        }
     }
 })
 
